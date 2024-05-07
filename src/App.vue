@@ -116,14 +116,10 @@ const items = ref([
     grid-auto-rows: minmax(100px, auto);
 }
 }
-/* #link-container {
-  gap: 2em;
-  display: grid;
-    grid-template-areas:
-        "main main . main main"
-        "main main . main main"
-        "main main main main main";
-    grid-template-columns: repeat(5, 1fr);
-    grid-auto-rows: minmax(100px, auto);
-} */
+
+#link-container:hover .link:not(:hover) {
+  opacity: 0.2;
+  transition: all 0.5s ease-in-out;
+}
+
 </style>
