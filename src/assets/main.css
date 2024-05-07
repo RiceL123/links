@@ -8,4 +8,10 @@ body {
   place-items: center;
   background: center no-repeat url("https://files.catbox.moe/xe6okq.png");
   background-size: cover;
+  overflow-y: scroll;
+  /* padding-bottom: 3em; */
+}
+
+::-webkit-scrollbar {
+  background: #00000000;
 }

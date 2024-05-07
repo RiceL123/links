@@ -86,13 +86,26 @@ const items = ref([
   ></WebLink>
   </div>
 
-  <p style="position: absolute; place-self: end; padding-right: 1rem; font-size: smaller;">background art by me 💀</p>
+  <p style="place-self: end; padding-right: 1rem; font-size: smaller;">background art by me 💀</p>
 </template>
 
 <style scoped>
 
+@media (min-width: 600px) {
+  #link-container {
+  gap: 2em;
+  display: grid;
+    grid-template-areas:
+        "main main . main main"
+        "main main . main main"
+        "main main main main main";
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+}
+}
 
-#link-container {
+@media (min-width: 950px) {
+  #link-container {
   gap: 2em;
   display: grid;
     grid-template-areas:
@@ -102,4 +115,15 @@ const items = ref([
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: minmax(100px, auto);
 }
+}
+/* #link-container {
+  gap: 2em;
+  display: grid;
+    grid-template-areas:
+        "main main . main main"
+        "main main . main main"
+        "main main main main main";
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+} */
 </style>
