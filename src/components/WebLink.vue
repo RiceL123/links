@@ -4,11 +4,15 @@ defineProps({
   link: String,
   logo: String,
 })
+
+const increment_count = (link) => {
+  console.log(link);
+}
 </script>
 
 <template>
   <div class="link hd">
-    <a :href="link">
+    <a :href="link" @click="increment_count(link)">
       <img :src="logo" alt="yt icon" height="100%" style="aspect-ratio: 1/1;" />
       <span>{{ title }}</span>
     </a>

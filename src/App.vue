@@ -11,62 +11,62 @@ const items = ref([
   {
     title: 'Youtube',
     link: 'https://www.youtube.com/@RiceL123',
-    logo: '/yt.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/yt.svg'
   },
   {
     title: 'Github',
     link: 'https://github.com/ricel123',
-    logo: '/github.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/github.svg'
   },
   {
     title: 'Twitch',
     link: 'https://www.twitch.tv/ricel12345',
-    logo: '/twitch.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/twitch.svg'
   },
   {
     title: 'Instagram',
     link: 'https://www.instagram.com/ricel12345/',
-    logo: '/insta.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/insta.svg'
   },
   {
     title: 'Twitter',
     link: 'https://twitter.com/ricel123',
-    logo: '/twitter.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/twitter.svg'
   },
   {
     title: 'My AnimeList',
     link: 'https://myanimelist.net/profile/Ricel123',
-    logo: '/anime.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/anime.svg'
   },
   {
     title: 'Jstris',
     link: 'https://jstris.jezevec10.com/u/RiceL123',
-    logo: '/jstris.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/jstris.svg'
   },
   {
     title: 'tetrio',
     link: 'https://ch.tetr.io/u/ricel123',
-    logo: '/tetrio.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/tetrio.svg'
   },
   {
     title: 'osu',
     link: 'https://osu.ppy.sh/users/16549400',
-    logo: '/osu.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/osu.svg'
   },
   {
     title: 'spotify',
     link: 'https://open.spotify.com/user/75ugbigv9cpu446t1pctxw0rl?si=69cde5aae58142c5',
-    logo: '/spotify.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/spotify.svg'
   },
   {
     title: 'sheet',
     link: 'https://docs.google.com/spreadsheets/d/1_fq3KERt8A-90-qOTUsP87QtQFZgj6aZ-3efs_eJkMg/edit?usp=sharing',
-    logo: '/sheet.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/sheet.svg'
   },
   {
     title: 'reddit',
     link: 'https://www.reddit.com/user/RiceL123/',
-    logo: '/reddit.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/reddit.svg'
   },
 
 ])
@@ -78,48 +78,35 @@ const items = ref([
   </header>
 
   <div id="link-container">
-    <WebLink 
-    v-for="item in items"
-    :title="item.title"
-    :link="item.link"
-    :logo="item.logo"
-  ></WebLink>
+    <WebLink v-for="item in items" :title="item.title" :link="item.link" :logo="item.logo"></WebLink>
   </div>
 
+  <!-- <p>visits</p> -->
   <p style="place-self: end; padding-right: 1rem; font-size: smaller;">background art by me 💀</p>
 </template>
 
 <style scoped>
-
 @media (min-width: 600px) {
   #link-container {
-  gap: 2em;
-  display: grid;
+    gap: 2em;
+    display: grid;
     grid-template-areas:
-        "main main . main main"
-        "main main . main main"
-        "main main main main main";
+      "main main . main main"
+      "main main . main main"
+      "main main main main main";
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: minmax(100px, auto);
-}
+  }
 }
 
 @media (min-width: 950px) {
   #link-container {
-  gap: 2em;
-  display: grid;
-    grid-template-areas:
-        "main main . main main"
-        "main main . main main"
-        "main main main main main";
     grid-template-columns: repeat(5, 1fr);
-    grid-auto-rows: minmax(100px, auto);
-}
+  }
 }
 
 #link-container:hover .link:not(:hover) {
   opacity: 0.2;
   transition: all 0.5s ease-in-out;
 }
-
 </style>
