@@ -11,62 +11,62 @@ const items = ref([
   {
     title: 'Youtube',
     link: 'https://www.youtube.com/@RiceL123',
-    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/yt.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/yt.svg'
   },
   {
     title: 'Github',
     link: 'https://github.com/ricel123',
-    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/github.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/github.svg'
   },
   {
     title: 'Twitch',
     link: 'https://www.twitch.tv/ricel12345',
-    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/twitch.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/twitch.svg'
   },
   {
     title: 'Instagram',
     link: 'https://www.instagram.com/ricel12345/',
-    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/insta.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/insta.svg'
   },
   {
     title: 'Twitter',
     link: 'https://twitter.com/ricel123',
-    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/twitter.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/twitter.svg'
   },
   {
     title: 'My AnimeList',
     link: 'https://myanimelist.net/profile/Ricel123',
-    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/anime.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/anime.svg'
   },
   {
     title: 'Jstris',
     link: 'https://jstris.jezevec10.com/u/RiceL123',
-    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/jstris.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/jstris.svg'
   },
   {
     title: 'tetrio',
     link: 'https://ch.tetr.io/u/ricel123',
-    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/tetrio.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/tetrio.svg'
   },
   {
     title: 'osu',
     link: 'https://osu.ppy.sh/users/16549400',
-    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/osu.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/osu.svg'
   },
   {
     title: 'spotify',
     link: 'https://open.spotify.com/user/75ugbigv9cpu446t1pctxw0rl?si=69cde5aae58142c5',
-    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/spotify.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/spotify.svg'
   },
   {
     title: 'sheet',
     link: 'https://docs.google.com/spreadsheets/d/1_fq3KERt8A-90-qOTUsP87QtQFZgj6aZ-3efs_eJkMg/edit?usp=sharing',
-    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/sheet.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/sheet.svg'
   },
   {
     title: 'reddit',
     link: 'https://www.reddit.com/user/RiceL123/',
-    logo: 'https://raw.githubusercontent.com/RiceL123/personal_website/main/src/assets/reddit.svg'
+    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/reddit.svg'
   },
 
 ])
