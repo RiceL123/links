@@ -100,10 +100,9 @@ const calculate_skew = (e) => {
 
   //   link.style.transform = `rotate(${angle}rad)`;
   // });
+  const mouse_x = e.clientX;
+  const mouse_y = e.clientY;
   link_nodes.forEach(link => {
-    const mouse_x = e.clientX;
-    const mouse_y = e.clientY;
-
     const center_y = link.offsetLeft + link.offsetWidth / 2;
     const center_x = link.offsetTop + link.offsetHeight / 2;
 
@@ -116,12 +115,8 @@ const calculate_skew = (e) => {
     link.style.transform = `perspective(500px) rotateX(${-chill_angleX}rad) rotateY(${-chill_angleY}rad)`;
   });
 
-  // perspective of background
-  let mouse_x = e.clientX;
-  let mouse_y = e.clientY;
-
-  let center_y = window.innerWidth / 2;
-  let center_x = window.innerHeight / 2;
+  let center_y = window.innerHeight / 2;
+  let center_x = window.innerWidth / 2;
 
   let angleX = Math.atan2(mouse_y - center_y, mouse_x - center_x);
   let chill_angleX = Math.max(-0.1, Math.min(angleX, 0.1));
@@ -130,9 +125,6 @@ const calculate_skew = (e) => {
   let chill_angleY = Math.max(-0.1, Math.min(angleY, 0.1));
 
   background.style.transform = `perspective(1000px) rotateX(${-chill_angleX}rad) rotateY(${-chill_angleY}rad)`;
-  // perspective of girl w/ umbrella
-  mouse_x = e.clientX;
-  mouse_y = e.clientY;
 
   angleX = Math.atan2(mouse_y - center_y, mouse_x - center_x);
   chill_angleX = Math.max(-0.1, Math.min(angleX, 0.1));
