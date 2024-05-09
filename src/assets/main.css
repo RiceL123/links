@@ -4,9 +4,10 @@ body {
 
 #app {
   height: 100vh;
+  width: 100vw;
   display: grid;
   place-items: center;
-  background: center no-repeat url("https://files.catbox.moe/xe6okq.png");
+  /* background: center no-repeat url("https://files.catbox.moe/xe6okq.png"); */
   background-size: cover;
   overflow-y: scroll;
   /* padding-bottom: 3em; */

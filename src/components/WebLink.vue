@@ -5,15 +5,15 @@ defineProps({
   logo: String,
 })
 
-const increment_count = (link) => {
-  console.log(link);
-}
+// const increment_count = (link) => {
+//   console.log(link);
+// }
 </script>
 
 <template>
-  <div class="link hd">
-    <a :href="link" @click="increment_count(link)">
-      <img :src="logo" alt="yt icon" height="100%" style="aspect-ratio: 1/1;" />
+  <div class="link" ref="">
+    <a :href="link">
+      <img class="link-img" :src="logo" alt="yt icon" height="100%" style="aspect-ratio: 1/1;" />
       <span>{{ title }}</span>
     </a>
   </div>
@@ -22,6 +22,15 @@ const increment_count = (link) => {
 
 
 <style scoped>
+/* .link-img {
+  height: "100%"
+} */
+
+/* @media (min-width: 600px) {
+  .link-img {
+  height: "100%"
+} */
+
 .link {
   display: flex;
   grid-area: "main";
@@ -33,7 +42,8 @@ const increment_count = (link) => {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
-  transition: all 0.3s cubic-bezier(0, 0, 0.06, 1);
+  /* transition: all 0.3s cubic-bezier(0, 0, 0.06, 1); */
+  transition: all 1s;
 }
 
 .link:hover {
