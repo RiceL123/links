@@ -120,8 +120,8 @@ const calculate_skew = (e) => {
   let mouse_x = e.clientX;
   let mouse_y = e.clientY;
 
-  let center_y = background.offsetLeft + background.offsetWidth / 2;
-  let center_x = background.offsetTop + background.offsetHeight / 2;
+  let center_y = window.innerWidth / 2;
+  let center_x = window.innerHeight / 2;
 
   let angleX = Math.atan2(mouse_y - center_y, mouse_x - center_x);
   let chill_angleX = Math.max(-0.1, Math.min(angleX, 0.1));
@@ -129,21 +129,18 @@ const calculate_skew = (e) => {
   let angleY = Math.atan(mouse_y - center_y, mouse_x - center_x);
   let chill_angleY = Math.max(-0.1, Math.min(angleY, 0.1));
 
-  background.style.transform = `perspective(2000px) rotateX(${-chill_angleX}rad) rotateY(${-chill_angleY}rad)`;
+  background.style.transform = `perspective(1000px) rotateX(${-chill_angleX}rad) rotateY(${-chill_angleY}rad)`;
   // perspective of girl w/ umbrella
   mouse_x = e.clientX;
   mouse_y = e.clientY;
 
-  center_y = girl.offsetLeft + girl.offsetWidth / 2;
-  center_x = girl.offsetTop + girl.offsetHeight / 2;
-
   angleX = Math.atan2(mouse_y - center_y, mouse_x - center_x);
-  chill_angleX = Math.max(-0.2, Math.min(angleX, 0.2));
+  chill_angleX = Math.max(-0.1, Math.min(angleX, 0.1));
 
   angleY = Math.atan(mouse_y - center_y, mouse_x - center_x);
-  chill_angleY = Math.max(-0.2, Math.min(angleY, 0.2));
+  chill_angleY = Math.max(-0.1, Math.min(angleY, 0.1));
 
-  girl.style.transform = `perspective(1000px) rotateX(${-chill_angleX}rad) rotateY(${-chill_angleY}rad)`;
+  girl.style.transform = `perspective(5000px) rotateX(${-chill_angleX}rad) rotateY(${-chill_angleY}rad)`;
 }
 </script>
 
