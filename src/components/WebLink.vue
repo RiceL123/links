@@ -27,7 +27,7 @@ let boundingReg = ref(null)
         const xRotation = (xPercentage - 0.5) * 10;
         const yRotation = (0.5 - yPercentage) * 10;
         // console.log(xRotation);
-        e.currentTarget.style.setProperty('transform', `perspective(100px) rotateX(${xRotation}deg) rotateY(${yRotation}deg`);
+        e.currentTarget.style.setProperty('transform', `perspective(100px) rotateY(${xRotation}deg) rotateX(${yRotation}deg`);
       }
     }">
     <a :href="link">
