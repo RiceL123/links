@@ -1,6 +1,7 @@
 <script setup>
 import WebLink from './components/WebLink.vue'
-import { onMounted, ref, toRaw } from 'vue'
+import CursorTrail from './components/CursorTrail.vue'
+import { onMounted, ref } from 'vue'
 
 const items = ref([
   {
@@ -68,55 +69,60 @@ const items = ref([
     link: 'https://www.reddit.com/user/RiceL123/',
     logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/reddit.svg'
   },
+]);
 
-])
-
-const linkRefs = ref([])
-
-onMounted(() => window.addEventListener("mousemove", (e) => perpective_background(e)));
-
-let link_nodes = [];
 let background;
 let girl;
 onMounted(() => {
-  link_nodes = document.querySelectorAll(".link");
+  window.addEventListener("mousemove", (e) => {
+    {
+      const clamp = 3;
+      const mouse_x = e.clientX;
+      const mouse_y = e.clientY;
+
+      let center_y = window.innerHeight / 2;
+      let center_x = window.innerWidth / 2;
+      let yRotation = Math.max(-clamp, Math.min(((mouse_x - center_x) / center_x) * clamp, clamp));
+      let xRotation = Math.max(-clamp, Math.min(((mouse_y - center_y) / center_y) * clamp, clamp));
+      background.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
+      girl.style.transform = `perspective(1000px) rotateX(${-xRotation * 0.5}deg)  rotateY(${-yRotation * 0.5}deg)`;
+    }
+  });
+
   background = document.getElementById('background');
   girl = document.getElementById('girl');
 });
-
-const perpective_background = (e) => {  
-  const clamp = 3;
-  const mouse_x = e.clientX;
-  const mouse_y = e.clientY;
-
-  let center_y = window.innerHeight / 2;
-  let center_x = window.innerWidth / 2;
-  let yRotation = Math.max(-clamp, Math.min(((mouse_x - center_x) / center_x) * clamp, clamp));
-  let xRotation = Math.max(-clamp, Math.min(((mouse_y - center_y) / center_y) * clamp, clamp));
-  background.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
-  girl.style.transform = `perspective(1000px) rotateX(${-xRotation * 0.5}deg)  rotateY(${-yRotation * 0.5}deg)`;
-}
 </script>
 
 <template>
-  <div
-    style="position: absolute; height: 100vh; width: 100vw; z-index: -10; overflow: hidden; display: flex; justify-content: center;">
-    <img id="background" src="https://files.catbox.moe/kp1hqu.png" alt="background" height="100%" style="transition: all 0.1s; scale: 1.2;">
-  </div>
-  <div
-    style="position: absolute; height: 100vh; width: 100vw; z-index: -5; overflow: hidden; display: flex; justify-content: center;">
-    <img id="girl" src="https://files.catbox.moe/rxuihd.png" alt="background girl" height="100%" style="transition: all 0.1s; scale: 1.2;">
-  </div>
+  <Transition name="slide-down" appear>
+    <div
+      style="position: absolute; height: 100vh; width: 100vw; z-index: -10; overflow: hidden; display: flex; justify-content: center;">
+      <img id="background" src="https://raw.githubusercontent.com/RiceL123/links/master/src/assets/background.png"
+        alt="background" height="100%" style="transition: all 0.1s; scale: 1.2;">
+    </div>
+  </Transition>
+  <Transition name="slide-up" appear>
+    <div
+      style="position: absolute; height: 100vh; width: 100vw; z-index: -5; overflow: hidden; display: flex; justify-content: center;">
+      <img id="girl" src="https://raw.githubusercontent.com/RiceL123/links/master/src/assets/girl.png"
+        alt="background girl" height="100%" style="transition: all 0.1s; scale: 1.2;">
+    </div>
+  </Transition>
+  <CursorTrail></CursorTrail>
 
-  <header>
-    <h2>Links for RiceL123</h2>
+  <header style="display: flex; flex-direction: column; align-items: center;">
+    <h1>Links for RiceL123</h1>
   </header>
 
   <div id="link-container">
     <WebLink v-for="item in items" :title="item.title" :link="item.link" :logo="item.logo"></WebLink>
   </div>
 
-  <p style="place-self: end; padding-right: 1rem; font-size: smaller;">background art by me 💀</p>
+  <p class="tooltip" style="place-self: end; padding-right: 1rem; font-size: smaller;">
+    background art by me 💀
+    <span class="tooltiptext">cursor and icons as well 😁</span>
+  </p>
 </template>
 
 <style scoped>
@@ -124,10 +130,6 @@ const perpective_background = (e) => {
   #link-container {
     gap: 2em;
     display: grid;
-    grid-template-areas:
-      "main main . main main"
-      "main main . main main"
-      "main main main main main";
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: minmax(80px, auto);
   }
@@ -140,8 +142,50 @@ const perpective_background = (e) => {
   }
 }
 
-/* #link-container:hover .link:not(:hover) {
+#link-container:hover .link:not(:hover) {
   opacity: 0.2;
   transition: all 0.5s ease-in-out;
-} */
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -70px;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.slide-down-enter-active {
+  transition: all 2s cubic-bezier(.21, .61, .21, 1.03);
+}
+
+.slide-down-enter-from {
+  transform: translateY(-200px);
+  opacity: 0.4;
+}
+
+.slide-up-enter-active {
+  transition: all 2s cubic-bezier(.21, .61, .21, 1.03);
+}
+
+.slide-up-enter-from {
+  transform: translateY(200px);
+  opacity: 0.4;
+}
 </style>
