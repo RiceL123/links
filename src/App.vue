@@ -130,7 +130,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  max-width: 100vw;
+  max-width: 2000px;
   margin-inline: 3em;
 }
 
