@@ -126,19 +126,27 @@ onMounted(() => {
 </template>
 
 <style scoped>
-@media (min-width: 600px) {
+#link-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  max-width: 100vw;
+  margin-inline: 3em;
+}
+
+@media (min-width: 1100px) {
   #link-container {
-    gap: 2em;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
     grid-auto-rows: minmax(80px, auto);
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1400px) {
   #link-container {
-    grid-template-columns: repeat(5, 1fr);
-    grid-auto-rows: minmax(100px, auto);
+    display: grid;
+    grid-template-columns: repeat(5, minmax(200px, 1fr));
+    grid-auto-rows: minmax(80px, auto);
   }
 }
 

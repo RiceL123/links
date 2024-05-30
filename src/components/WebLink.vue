@@ -34,6 +34,7 @@ let boundingReg = ref(null)
 
 <style scoped>
 .link {
+  max-width: 70vw;
   display: flex;
   height: 5em;
   border-radius: 1em;
