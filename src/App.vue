@@ -2,6 +2,7 @@
 import WebLink from './components/WebLink.vue'
 import CursorTrail from './components/CursorTrail.vue'
 import { onMounted, ref } from 'vue'
+import { reactive } from 'vue';
 
 const items = ref([
   {
@@ -92,20 +93,27 @@ onMounted(() => {
   background = document.getElementById('background');
   girl = document.getElementById('girl');
 });
+
+const heroAndBack = reactive([
+  ["https://raw.githubusercontent.com/RiceL123/links/master/src/assets/hero.png", "https://raw.githubusercontent.com/RiceL123/links/master/src/assets/background.png"],
+  ["https://raw.githubusercontent.com/RiceL123/links/master/src/assets/hero_1.png", "https://raw.githubusercontent.com/RiceL123/links/master/src/assets/background_1.png"]
+]);
+
+let index = ref(0);
 </script>
 
 <template>
   <Transition name="slide-down" appear>
     <div
       style="position: absolute; height: 100vh; width: 100vw; z-index: -10; overflow: hidden; display: flex; justify-content: center;">
-      <img id="background" src="https://raw.githubusercontent.com/RiceL123/links/master/src/assets/background.png"
+      <img id="background" :src="heroAndBack[index][1]"
         alt="background" height="100%" style="transition: all 0.1s; scale: 1.2;">
     </div>
   </Transition>
   <Transition name="slide-up" appear>
     <div
       style="position: absolute; height: 100vh; width: 100vw; z-index: -5; overflow: hidden; display: flex; justify-content: center;">
-      <img id="girl" src="https://raw.githubusercontent.com/RiceL123/links/master/src/assets/girl.png"
+      <img id="girl" :src="heroAndBack[index][0]"
         alt="background girl" height="100%" style="transition: all 0.1s; scale: 1.2;">
     </div>
   </Transition>
@@ -119,7 +127,7 @@ onMounted(() => {
     <WebLink v-for="item in items" :title="item.title" :link="item.link" :logo="item.logo"></WebLink>
   </div>
 
-  <p class="tooltip" style="place-self: end; padding-right: 1rem; font-size: smaller;">
+  <p class="tooltip" style="place-self: end; padding-right: 1rem; font-size: smaller; background-color: rgba(255, 255, 255, 0.3); padding: 5px; border-radius: 5px;" @click="index = (index + 1) % heroAndBack.length">
     background art by me 💀
     <span class="tooltiptext">cursor and icons as well 😁</span>
   </p>
