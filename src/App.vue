@@ -1,136 +1,155 @@
 <script setup>
 import WebLink from './components/WebLink.vue'
 import CursorTrail from './components/CursorTrail.vue'
+import Backdrop from './components/Backdrop.vue'
 import { onMounted, ref } from 'vue'
-import { reactive } from 'vue';
+
+import Websit from './components/svgs/Websit.vue';
+import Youtube from './components/svgs/Youtube.vue';
+import Github from './components/svgs/Github.vue';
+import Twitch from './components/svgs/Twitch.vue';
+import Instagram from './components/svgs/Instagram.vue';
+
+import Twitter from './components/svgs/Twitter.vue';
+import MyAnimeList from './components/svgs/MyAnimeList.vue';
+import Jstris from './components/svgs/Jstris.vue';
+import Tetrio from './components/svgs/Tetrio.vue';
+import osu from './components/svgs/osu.vue';
+
+import Spotify from './components/svgs/Spotify.vue';
+import sheet from './components/svgs/sheet.vue';
+import Reddit from './components/svgs/Reddit.vue';
 
 const items = ref([
   {
     title: 'Websit',
     link: 'https://ricel123.netlify.app/',
-    logo: 'https://files.catbox.moe/oi37kr.png'
+    color: '#9cc2ff',
+    svg_component: Websit
   },
   {
     title: 'Youtube',
     link: 'https://www.youtube.com/@RiceL123',
-    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/yt.svg'
+    color: '#ff6e6e',
+    svg_component: Youtube
   },
   {
     title: 'Github',
     link: 'https://github.com/ricel123',
-    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/github.svg'
+    color: '#84db97',
+    svg_component: Github
   },
   {
     title: 'Twitch',
     link: 'https://www.twitch.tv/ricel12345',
-    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/twitch.svg'
+    color: '#c693ed',
+    svg_component: Twitch
   },
   {
     title: 'Instagram',
     link: 'https://www.instagram.com/ricel12345/',
-    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/insta.svg'
+    color: '#ffc38f',
+    svg_component: Instagram
   },
   {
     title: 'Twitter',
     link: 'https://twitter.com/ricel123',
-    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/twitter.svg'
+    color: '#75f1ff',
+    svg_component: Twitter
   },
   {
-    title: 'My AnimeList',
+    title: 'MyAnimeList',
     link: 'https://myanimelist.net/profile/Ricel123',
-    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/anime.svg'
+    color: '#2861d4',
+    svg_component: MyAnimeList
   },
   {
     title: 'Jstris',
     link: 'https://jstris.jezevec10.com/u/RiceL123',
-    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/jstris.svg'
+    color: '#ea6ef5',
+    svg_component: Jstris
   },
   {
-    title: 'tetrio',
+    title: 'Tetrio',
     link: 'https://ch.tetr.io/u/ricel123',
-    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/tetrio.svg'
+    color: '#e8a758',
+    svg_component: Tetrio
   },
   {
     title: 'osu',
     link: 'https://osu.ppy.sh/users/16549400',
-    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/osu.svg'
+    color: '#ffbafc',
+    svg_component: osu
   },
   {
-    title: 'spotify',
+    title: 'Spotify',
     link: 'https://open.spotify.com/user/75ugbigv9cpu446t1pctxw0rl?si=69cde5aae58142c5',
-    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/spotify.svg'
+    color: '#43f071',
+    svg_component: Spotify
   },
   {
     title: 'sheet',
     link: 'https://docs.google.com/spreadsheets/d/1_fq3KERt8A-90-qOTUsP87QtQFZgj6aZ-3efs_eJkMg/edit?usp=sharing',
-    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/sheet.svg'
+    color: '#00b02f',
+    svg_component: sheet
   },
   {
-    title: 'reddit',
+    title: 'Reddit',
     link: 'https://www.reddit.com/user/RiceL123/',
-    logo: 'https://raw.githubusercontent.com/RiceL123/links/master/src/assets/reddit.svg'
+    color: '#f58936',
+    svg_component: Reddit
   },
 ]);
 
-let background;
-let girl;
+
 onMounted(() => {
-  window.addEventListener("mousemove", (e) => {
-    {
-      const clamp = 3;
-      const mouse_x = e.clientX;
-      const mouse_y = e.clientY;
+  Array.from(document.getElementsByClassName("link")).forEach((x, index) => {
+    x.animate(
+      [
+        { transform: "translate(-2000px, -500px) scale(.5)", opacity: 0 },
+        { transform: "translate(0, 0) scale(1)", opacity: 1 }
+      ],
+      {
+        duration: 1000,
+        easing: "ease-out",
+        iterations: 1,
+        delay: index * 150
+      }
+    );
 
-      let center_y = window.innerHeight / 2;
-      let center_x = window.innerWidth / 2;
-      let yRotation = Math.max(-clamp, Math.min(((mouse_x - center_x) / center_x) * clamp, clamp));
-      let xRotation = Math.max(-clamp, Math.min(((mouse_y - center_y) / center_y) * clamp, clamp));
-      background.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
-      girl.style.transform = `perspective(1000px) rotateX(${-xRotation * 0.5}deg)  rotateY(${-yRotation * 0.5}deg)`;
-    }
+    x.getElementsByTagName("svg")[0].animate(
+      [
+        { transform: "scale(5)" },
+        { transform: "scale(1)" }
+      ],
+      {
+        duration: 1500,
+        easing: "ease-out",
+        iterations: 1,
+        delay: index * 150
+      }
+    )
   });
-
-  background = document.getElementById('background');
-  girl = document.getElementById('girl');
 });
 
-const heroAndBack = reactive([
-  ["https://raw.githubusercontent.com/RiceL123/links/master/src/assets/hero.png", "https://raw.githubusercontent.com/RiceL123/links/master/src/assets/background.png"],
-  ["https://raw.githubusercontent.com/RiceL123/links/master/src/assets/hero_1.png", "https://raw.githubusercontent.com/RiceL123/links/master/src/assets/background_1.png"]
-]);
-
-let index = ref(0);
 </script>
 
 <template>
-  <Transition name="slide-down" appear>
-    <div
-      style="position: absolute; height: 100vh; width: 100vw; z-index: -10; overflow: hidden; display: flex; justify-content: center;">
-      <img id="background" :src="heroAndBack[index][1]"
-        alt="background" height="100%" style="transition: all 0.1s; scale: 1.2;">
-    </div>
-  </Transition>
-  <Transition name="slide-up" appear>
-    <div
-      style="position: absolute; height: 100vh; width: 100vw; z-index: -5; overflow: hidden; display: flex; justify-content: center;">
-      <img id="girl" :src="heroAndBack[index][0]"
-        alt="background girl" height="100%" style="transition: all 0.1s; scale: 1.2;">
-    </div>
-  </Transition>
-  <CursorTrail></CursorTrail>
+  <Backdrop />
+
+  <CursorTrail />
 
   <header style="display: flex; flex-direction: column; align-items: center;">
-    <h1>Links for RiceL123</h1>
+    <h1 style="font-family: 'Courier New', Courier, monospace; font-size: 3rem;" class="chromatic-abberation">RiceL123 Links</h1>
   </header>
 
   <div id="link-container">
-    <WebLink v-for="item in items" :title="item.title" :link="item.link" :logo="item.logo"></WebLink>
+    <WebLink v-for="(item, index) in items" :title="item.title" :link="item.link" :logo="item.logo"
+      :svg_color="item.color" :key="index">
+      <component :is="item.svg_component" />
+    </WebLink>
   </div>
 
-  <p class="tooltip" style="place-self: end; padding-right: 1rem; font-size: smaller; background-color: rgba(255, 255, 255, 0.3); padding: 5px; border-radius: 5px;" @click="index = (index + 1) % heroAndBack.length">
-    background art by me 💀
-    <span class="tooltiptext">cursor and icons as well 😁</span>
-  </p>
 </template>
 
 <style scoped>
@@ -140,6 +159,10 @@ let index = ref(0);
   gap: 1em;
   max-width: 2000px;
   margin-inline: 3em;
+}
+
+#link-container:not(:hover) .link {
+  opacity: 0.7 !important;
 }
 
 @media (min-width: 1100px) {
@@ -163,45 +186,8 @@ let index = ref(0);
   transition: all 0.5s ease-in-out;
 }
 
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -70px;
-  position: absolute;
-  z-index: 1;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
-
-.slide-down-enter-active {
-  transition: all 2s cubic-bezier(.21, .61, .21, 1.03);
-}
-
-.slide-down-enter-from {
-  transform: translateY(-200px);
-  opacity: 0.4;
-}
-
-.slide-up-enter-active {
-  transition: all 2s cubic-bezier(.21, .61, .21, 1.03);
-}
-
-.slide-up-enter-from {
-  transform: translateY(200px);
-  opacity: 0.4;
+.chromatic-abberation {
+  color: azure;
+  text-shadow: rgba(255, 0, 0, 0.4) 10px 3px, rgba(0, 255, 255, 0.5) -3px 5px, rgba(255, 255, 0, 0.5) -3px -3px, rgba(255, 0, 255, 0.3) -10px 3px, black 3px 3px;
 }
 </style>
