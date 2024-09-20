@@ -2,7 +2,7 @@
 import WebLink from './components/WebLink.vue'
 import CursorTrail from './components/CursorTrail.vue'
 import Backdrop from './components/Backdrop.vue'
-import { onMounted, ref } from 'vue'
+import { onBeforeMount, onMounted, ref, shallowRef } from 'vue'
 
 import Websit from './components/svgs/Websit.vue';
 import Youtube from './components/svgs/Youtube.vue';
@@ -20,7 +20,7 @@ import Spotify from './components/svgs/Spotify.vue';
 import sheet from './components/svgs/sheet.vue';
 import Reddit from './components/svgs/Reddit.vue';
 
-const items = ref([
+const items = shallowRef([
   {
     title: 'Websit',
     link: 'https://ricel123.netlify.app/',
@@ -101,34 +101,44 @@ const items = ref([
   },
 ]);
 
-
 onMounted(() => {
   Array.from(document.getElementsByClassName("link")).forEach((x, index) => {
-    x.animate(
+    const animation = x.animate(
       [
-        { transform: "translate(-2000px, -500px) scale(.5)", opacity: 0 },
-        { transform: "translate(0, 0) scale(1)", opacity: 1 }
+        { transform: "translate(0, 0) scale(1) rotate(0)", opacity: 1 }
       ],
       {
         duration: 1000,
         easing: "ease-out",
         iterations: 1,
-        delay: index * 150
+        delay: index * 150,
       }
     );
 
+    animation.persist();
+
+    animation
+      .finished
+      .then(() => {
+        x.style.transition = 'none'
+        x.style.transform = 'translate(0, 0) scale(1) rotate(0)';
+        x.style.opacity = "0.7";
+
+        setTimeout(() => { x.style.removeProperty('transition') }, 0)
+      });
+
     x.getElementsByTagName("svg")[0].animate(
       [
-        { transform: "scale(5)" },
+        { transform: "scale(3)" },
         { transform: "scale(1)" }
       ],
       {
         duration: 1500,
         easing: "ease-out",
         iterations: 1,
-        delay: index * 150
+        delay: index * 150,
       }
-    )
+    );
   });
 });
 
@@ -140,12 +150,12 @@ onMounted(() => {
   <CursorTrail />
 
   <header style="display: flex; flex-direction: column; align-items: center;">
-    <h1 style="font-family: 'Courier New', Courier, monospace; font-size: 3rem;" class="chromatic-abberation">RiceL123 Links</h1>
+    <h1 style="font-family: 'Courier New', Courier, monospace; font-size: 3rem;" class="chromatic-abberation">RiceL123
+      Links</h1>
   </header>
 
   <div id="link-container">
-    <WebLink v-for="(item, index) in items" :title="item.title" :link="item.link" :logo="item.logo"
-      :svg_color="item.color" :key="index">
+    <WebLink v-for="(item, index) in items" :title="item.title" :link="item.link" :svg_color="item.color" :key="index">
       <component :is="item.svg_component" />
     </WebLink>
   </div>
@@ -159,6 +169,7 @@ onMounted(() => {
   gap: 1em;
   max-width: 2000px;
   margin-inline: 3em;
+  transition: all 0.5s
 }
 
 #link-container:not(:hover) .link {

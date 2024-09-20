@@ -4,16 +4,20 @@ import { onMounted, ref } from 'vue'
 defineProps({
   title: String,
   link: String,
-  logo: String,
   svg_color: String,
 })
 
 let boundingReg = ref(null)
 
+const linkNode = ref()
+onMounted(() => {
+  linkNode.value.style.transform = 'translate(-2000px, -500px) scale(.5) rotate(-90deg)'
+  linkNode.value.style.opacity = 0;
+})
 </script>
 
 <template>
-  <div class="link" @mouseenter="e => {
+  <div ref='linkNode' class="link" @mouseenter="e => {
     boundingReg = e.currentTarget.getBoundingClientRect();
     const svgPaths = e.target.querySelectorAll('path, polygon, rect, line, polyline, circle');
     svgPaths.forEach(path => {
@@ -23,10 +27,10 @@ let boundingReg = ref(null)
       path.style.transition = 'stroke-dashoffset 2s ease-in-out, stroke 0.4s ease-in-out';
       path.style.stroke = svg_color;
     });
-    
+
   }" @mouseleave="e => {
     boundingReg = null;
-    e.currentTarget.style.setProperty('transform', '');
+    e.currentTarget.style.setProperty('transform', 'translate(0, 0) scale(1) rotate(0)');
     const svgPaths = e.target.querySelectorAll('path, polygon, rect, line, polyline, circle');
     svgPaths.forEach(path => {
       path.style.transition = 'stroke-dashoffset 1.5s ease-in-out, stroke 2s ease-in';
@@ -79,6 +83,8 @@ let boundingReg = ref(null)
 
   stroke: #202020;
   stroke-width: 1.5px;
+
+  transform: translate(-2000px, -500px) scale(.5) rotate(-90deg);
 }
 
 .link:hover,

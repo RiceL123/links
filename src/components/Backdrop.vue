@@ -1,14 +1,11 @@
 <script setup>
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive, ref, shallowRef } from 'vue'
 
-const show = ref(false)
+let show = ref(true)
 
 const newImage = ["https://raw.githubusercontent.com/RiceL123/links/master/src/assets/hero.png", "https://raw.githubusercontent.com/RiceL123/links/master/src/assets/background.png"];
-const oldImage = ["https://raw.githubusercontent.com/RiceL123/links/master/src/assets/hero_1.png", "https://raw.githubusercontent.com/RiceL123/links/master/src/assets/background_1.png"]
 
-const heroAndBack = reactive([newImage, oldImage]);
-
-let index = ref(0);
+const heroAndBack = ref([newImage]);
 
 let background;
 let hero;
@@ -33,25 +30,36 @@ onMounted(() => {
   background = document.getElementById('background');
   hero = document.getElementById('hero');
 });
+
+const toggleLinks = () => {
+  show = !show
+  let link_container = document.getElementById('link-container');
+  link_container.style.opacity = show ? '1' : '0';
+}
 </script>
 
 <template>
   <Transition name="slide-down" appear>
     <div id="background-container"
       style="position: absolute; height: 100vh; width: 100vw; z-index: -10; overflow: hidden; display: flex; justify-content: center;">
-      <img id="background" :src="heroAndBack[index][1]"
-        alt="background" height="100%" style="transition: all 0.1s; scale: 1.2;">
+      <img id="background" :src="heroAndBack[0][1]" alt="background" height="100%"
+        style="transition: all 0.1s; scale: 1.2;">
     </div>
   </Transition>
   <Transition name="slide-up" appear>
-    <div 
-      id="hero-container"
+    <div id="hero-container"
       style="position: absolute; height: 100vh; width: 100vw; z-index: -5; overflow: hidden; display: flex; justify-content: center;">
-      <img id="hero" :src="heroAndBack[index][0]"
-        alt="background hero" height="100%" style="transition: all 0.1s; scale: 1.2;">
+      <img id="hero" :src="heroAndBack[0][0]" alt="background hero" height="100%"
+        style="transition: all 0.1s; scale: 1.2;">
     </div>
   </Transition>
-  <p class="tooltip" style="position: absolute; place-self: end; margin-right: 1rem; font-family: 'Courier New', Courier, monospace; font-size: smaller; background-color: rgba(255, 255, 255, 0.3); padding: 5px; border-radius: 5px;" @click="index = (index + 1) % heroAndBack.length">
+  <p class="tooltip"
+    style="position: absolute; place-self: end; margin-right: 1rem; font-family: 'Courier New', Courier, monospace; font-size: smaller; background-color: rgba(255, 255, 255, 0.3); padding: 5px; border-radius: 5px;"
+    @click="e => {
+      index = (index + 1) % heroAndBack.length;
+      toggleLinks();
+    }
+      ">
     background art by me 💀
     <span class="tooltiptext">cursor and icons as well 😁</span>
   </p>
