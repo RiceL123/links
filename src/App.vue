@@ -2,7 +2,7 @@
 import WebLink from './components/WebLink.vue'
 import CursorTrail from './components/CursorTrail.vue'
 import Backdrop from './components/Backdrop.vue'
-import { onBeforeMount, onMounted, ref, shallowRef } from 'vue'
+import { onMounted, ref, shallowRef } from 'vue'
 
 import Websit from './components/svgs/Websit.vue';
 import Youtube from './components/svgs/Youtube.vue';
@@ -101,7 +101,28 @@ const items = shallowRef([
   },
 ]);
 
+let num = ref(0);
+
+let goodDayMultiplier = Math.round(Math.random() * 1000000000);
+
 onMounted(() => {
+  let goodDaySpan = document.getElementById("goodDaySpan")
+  goodDaySpan.style.fontSize = "20px";
+
+  const incrementGoodDay = () => {
+    const step = () => {
+      if (num.value < goodDayMultiplier) {
+        num.value += 1;
+
+        if (num.value % 500 == 0) {
+          goodDaySpan.style.fontSize = parseInt(goodDaySpan.style.fontSize) + 1 + "px";
+        }
+        requestAnimationFrame(step);
+      }
+    };
+    requestAnimationFrame(step);
+  };
+
   Array.from(document.getElementsByClassName("link")).forEach((x, index) => {
     const animation = x.animate(
       [
@@ -140,6 +161,25 @@ onMounted(() => {
       }
     );
   });
+
+  let textWrapper = document.querySelectorAll('.subline .letters');
+  textWrapper.forEach(x => x.innerHTML = x.textContent.replace(/\S/g, "<span class='letter'>$&</span>"));
+
+  let letters = document.querySelectorAll('.subline .letters .letter');
+
+  letters.forEach((x, index) => {
+    let delay = index < 33 ? index * 150 : (index + 4) * 150;
+    x.animate(
+      [
+        { opacity: 0 },
+        { opacity: 1 }
+      ],
+      { duration: 2000, delay, iterations: 'Infinity', easing: 'linear(0, .9, 1)' }
+    );
+  });
+
+
+  incrementGoodDay();
 });
 
 </script>
@@ -150,8 +190,15 @@ onMounted(() => {
   <CursorTrail />
 
   <header style="display: flex; flex-direction: column; align-items: center;">
-    <h1 style="font-family: 'Courier New', Courier, monospace; font-size: 3rem;" class="chromatic-abberation">RiceL123
+    <h1 style="font-size: 3rem;" class="chromatic-abberation">RiceL123
       Links</h1>
+
+
+    <p class='subline' style="font-size: 1.2rem; color: white; text-shadow: black 2px 2px;">
+      <span class="letters">hello. how are you? have a good x</span>
+      <span id="goodDaySpan">{{ num }}</span>
+      <span class="letters"> day</span>
+    </p>
   </header>
 
   <div id="link-container">
@@ -172,10 +219,6 @@ onMounted(() => {
   transition: all 0.5s
 }
 
-#link-container:not(:hover) .link {
-  opacity: 0.7 !important;
-}
-
 @media (min-width: 1100px) {
   #link-container {
     display: grid;
@@ -192,13 +235,13 @@ onMounted(() => {
   }
 }
 
-#link-container:hover .link:not(:hover) {
-  opacity: 0.2;
-  transition: all 0.5s ease-in-out;
-}
-
 .chromatic-abberation {
   color: azure;
   text-shadow: rgba(255, 0, 0, 0.4) 10px 3px, rgba(0, 255, 255, 0.5) -3px 5px, rgba(255, 255, 0, 0.5) -3px -3px, rgba(255, 0, 255, 0.3) -10px 3px, black 3px 3px;
+}
+
+.subline .letter {
+  display: inline-block;
+  line-height: 1em;
 }
 </style>

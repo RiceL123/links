@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, reactive, ref, shallowRef } from 'vue'
+import { onMounted, ref } from 'vue'
 
 let show = ref(true)
 
@@ -54,14 +54,14 @@ const toggleLinks = () => {
     </div>
   </Transition>
   <p class="tooltip"
-    style="position: absolute; place-self: end; margin-right: 1rem; font-family: 'Courier New', Courier, monospace; font-size: smaller; background-color: rgba(255, 255, 255, 0.3); padding: 5px; border-radius: 5px;"
+    style="position: absolute; place-self: end; margin-right: 1rem; font-size: smaller; background-color: rgba(255, 255, 255, 0.3); padding: 5px; border-radius: 5px;"
     @click="e => {
       index = (index + 1) % heroAndBack.length;
       toggleLinks();
     }
       ">
     background art by me 💀
-    <span class="tooltiptext">cursor and icons as well 😁</span>
+    <span class="tooltiptext">cursor as well 😁</span>
   </p>
 </template>
 
@@ -96,7 +96,7 @@ const toggleLinks = () => {
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 5px 3px;
   bottom: 125%;
   left: 50%;
   margin-left: -70px;

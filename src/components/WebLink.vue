@@ -98,7 +98,6 @@ onMounted(() => {
 }
 
 .link-text {
-  font-family: 'Courier New', Courier, monospace;
   color: azure;
   font-size: larger;
   font-weight: bolder;
