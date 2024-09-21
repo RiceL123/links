@@ -189,7 +189,7 @@ onMounted(() => {
 
   <CursorTrail />
 
-  <header style="display: flex; flex-direction: column; align-items: center;">
+  <header style="display: flex; flex-direction: column; align-items: center; padding-inline: 20px;">
     <h1 style="font-size: 3rem;" class="chromatic-abberation">RiceL123
       Links</h1>
 
@@ -216,7 +216,8 @@ onMounted(() => {
   gap: 1em;
   max-width: 2000px;
   margin-inline: 3em;
-  transition: all 0.5s
+  transition: all 0.5s;
+  margin-bottom: 60px;
 }
 
 @media (min-width: 1100px) {
@@ -240,8 +241,8 @@ onMounted(() => {
   text-shadow: rgba(255, 0, 0, 0.4) 10px 3px, rgba(0, 255, 255, 0.5) -3px 5px, rgba(255, 255, 0, 0.5) -3px -3px, rgba(255, 0, 255, 0.3) -10px 3px, black 3px 3px;
 }
 
-.subline .letter {
-  display: inline-block;
-  line-height: 1em;
+.subline {
+  padding-right: 20px;
+  padding-left: 20px;
 }
 </style>

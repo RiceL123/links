@@ -53,13 +53,11 @@ const toggleLinks = () => {
         style="transition: all 0.1s; scale: 1.2;">
     </div>
   </Transition>
-  <p class="tooltip"
-    style="position: absolute; place-self: end; margin-right: 1rem; font-size: smaller; background-color: rgba(255, 255, 255, 0.3); padding: 5px; border-radius: 5px;"
-    @click="e => {
-      index = (index + 1) % heroAndBack.length;
-      toggleLinks();
-    }
-      ">
+  <p class="tooltip" @click="e => {
+    index = (index + 1) % heroAndBack.length;
+    toggleLinks();
+  }
+    ">
     background art by me 💀
     <span class="tooltiptext">cursor as well 😁</span>
   </p>
@@ -85,8 +83,14 @@ const toggleLinks = () => {
 }
 
 .tooltip {
-  position: relative;
-  display: inline-block;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  margin-right: 1rem;
+  font-size: smaller;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 5px;
+  border-radius: 5px
 }
 
 .tooltip .tooltiptext {
