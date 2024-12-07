@@ -1,14 +1,11 @@
 <template>
-    <svg width="80px" height="80px" viewBox="0 0 48 48">
-        <path class="cls-1"
-            d="M41.5,10.22H6.5a2,2,0,0,0-2,2v23.3a2,2,0,0,0,2,2h35a2,2,0,0,0,2-2V12.22A2,2,0,0,0,41.5,10.22Z" />
-        <line class="cls-1" x1="9.38" y1="15.44" x2="21.64" y2="15.44" />
-        <line class="cls-1" x1="9.38" y1="21.11" x2="21.64" y2="21.11" />
-        <line class="cls-1" x1="9.38" y1="26.79" x2="21.64" y2="26.79" />
-        <line class="cls-1" x1="21.64" y1="32.47" x2="9.38" y2="32.47" />
-        <line class="cls-1" x1="26.36" y1="15.44" x2="38.63" y2="15.44" />
-        <line class="cls-1" x1="26.36" y1="21.11" x2="38.63" y2="21.11" />
-        <line class="cls-1" x1="26.36" y1="26.79" x2="38.63" y2="26.79" />
-        <line class="cls-1" x1="38.63" y1="32.47" x2="26.36" y2="32.47" />
+    <svg width="80px" height="80px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <path class="a" d="M14.75,5.5v37" />
+        <path class="a" d="M5.5,14.75h37" />
+        <path class="a" d="M24,14.75V42.5" />
+        <path class="a" d="M33.25,14.75V42.5" />
+        <path class="a" d="M14.75,24H42.5" />
+        <path class="a" d="M14.75,33.25H42.5" />
+        <rect class="a" x="5.5" y="5.5" width="37" height="37" rx="2" />
     </svg>
 </template>

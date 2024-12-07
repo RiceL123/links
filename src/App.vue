@@ -19,6 +19,7 @@ import osu from './components/svgs/osu.vue';
 import Spotify from './components/svgs/Spotify.vue';
 import sheet from './components/svgs/sheet.vue';
 import Reddit from './components/svgs/Reddit.vue';
+import Blog from './components/svgs/Blog.vue';
 
 const items = shallowRef([
   {
@@ -98,6 +99,12 @@ const items = shallowRef([
     link: 'https://www.reddit.com/user/RiceL123/',
     color: '#f58936',
     svg_component: Reddit
+  },
+  {
+    title: 'Blog',
+    link: 'https://ricel123.vercel.app',
+    color: '#ff61a3',
+    svg_component: Blog
   },
 ]);
 
